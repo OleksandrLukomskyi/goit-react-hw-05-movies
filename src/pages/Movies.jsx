@@ -1,23 +1,35 @@
-import FormSearchProducts from "components/Forms/FormSearchProducts"
-
+import { useCallback, useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import FormSearchProducts from 'components/Forms/FormSearchProducts';
+import ListMovies from 'components/ListMovies/ListMovies';
+import { getSearchMovies } from 'services/moviesApi';
 
 const Movies = () => {
-  
-  
-  return (
-     <>
-     <FormSearchProducts/>
-     </>
-      // {{products.map((product) => (
-      //   <CardWrapper key={product.id}>
-      //     <Link to={`${product.id}`} state={{ from: location }}>
-      //       <img src="https://via.placeholder.com/200x100" alt="" />
-      //       <ProductName>{product.name}</ProductName>
-      //     </Link>
-      //   </CardWrapper>
-      // ))} }
-     
-  )
-}
+  const [movies, setMovies] = useState(null);
+  const [searchParams] = useSearchParams();
 
-export default Movies
+  const getMoviesWithSearch = useCallback(async query => {
+    try {
+      const data = await getSearchMovies(query);
+
+      setMovies(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
+
+  useEffect(() => {
+    const query = searchParams.get('search');
+    getMoviesWithSearch(query);
+  }, [getMoviesWithSearch, searchParams]);
+
+  return (
+    <>
+      <FormSearchProducts />
+
+      {movies && <ListMovies movies={movies} />}
+    </>
+  );
+};
+
+export default Movies;

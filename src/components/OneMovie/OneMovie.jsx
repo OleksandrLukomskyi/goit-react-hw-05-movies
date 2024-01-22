@@ -1,9 +1,16 @@
+import { Link, useLocation } from 'react-router-dom';
 
-
-const OneMovie = () => {
+export const OneMovie = ({ result }) => {
+  const location = useLocation();
+  console.log(location);
   return (
-    <div>OneMovie</div>
-  )
-}
+    <Link
+      to={location.pathname === '/' ? `movies/${result.id}` : `${result.id}`}
+      state={location}
+    >
+      <li>{result.title}</li>
+    </Link>
+  );
+};
 
-export default OneMovie
+export default OneMovie;

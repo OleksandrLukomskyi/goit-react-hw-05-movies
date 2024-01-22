@@ -1,16 +1,16 @@
-import OneMovie from "components/OneMovie/OneMovie";
+import React from 'react';
+import { OneMovie } from 'components/OneMovie/OneMovie';
 
-
-const ListMovie = ({results}) => {
-  
-      
-
+export const ListMovies = ({ movies }) => {
   return (
     <>
-    {/* {isLoading && <h1> loading...</h1>} */}
-    {results && results.map((el)=> <OneMovie key={el.id} movie={el} />)}
+      <ul>
+        {movies.results &&
+          movies.results.map(result => (
+            <OneMovie key={result.id} result={result} />
+          ))}
+      </ul>
     </>
-  )
-}
-
-export default ListMovie
+  );
+};
+export default ListMovies;

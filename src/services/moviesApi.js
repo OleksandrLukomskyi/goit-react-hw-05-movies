@@ -1,4 +1,4 @@
-import { api } from './api';
+import api from './api';
 
 const options = {
   method: 'GET',
@@ -11,36 +11,37 @@ const options = {
 
 export const getTrendingMovies = async () => {
   const { data } = await api(`/trending/movie/day?language=en-US`, options);
-  console.log(data);
+
   return data;
 };
 
-export const getSearchMovies = async () => {
+export const getSearchMovies = async query => {
   const { data } = await api(
-    `/search/movie?include_adult=false&language=en-US&page=1`,
+    `/search/movie?query=${query}&include_adult=false&language=en-US&page=1`,
     options
   );
-  console.log(data);
+
   return data;
 };
 
-export const getDetailsMovies = async id => {
-  const { data } = await api(`/movie/${id}?language=en-US`, options);
-  console.log(data);
+export const getDetailsMovies = async movieId => {
+  const { data } = await api(`/movie/${movieId}?language=en-US`, options);
   return data;
 };
 
-export const getCreditsMovies = async () => {
-  const { data } = await api(`/movie/movie_id/credits?language=en-US`, options);
-  console.log(data);
-  return data;
-};
-
-export const getReviewsMovies = async () => {
+export const getCreditsMovies = async movieId => {
   const { data } = await api(
-    `/movie/movie_id/reviews?language=en-US&page=1`,
+    `/movie/${movieId}/credits?language=en-US`,
     options
   );
-  console.log(data);
+  return data;
+};
+
+export const getReviewsMovies = async movieId => {
+  const { data } = await api(
+    `/movie/${movieId}/reviews?language=en-US&page=1`,
+    options
+  );
+
   return data;
 };
