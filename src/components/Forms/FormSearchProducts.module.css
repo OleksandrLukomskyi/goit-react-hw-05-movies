@@ -1,0 +1,17 @@
+
+.formContainer {
+   display: flex;
+   align-items: center;
+ }
+ 
+ .formLabel {
+   margin-right: 10px;
+ }
+ 
+ .formInput {
+   width: 200px;
+ }
+ 
+ .btn {
+   margin-left: 10px;
+}

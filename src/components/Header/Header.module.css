@@ -1,0 +1,26 @@
+
+.headerNav {
+   display: flex;
+   align-items: center;
+ }
+ 
+ .headerUl {
+   list-style: none;
+   display: flex;
+   margin: 0;
+   margin-left: 15px;
+   padding: 10px;
+ }
+ 
+ .headerLi {
+   margin-right: 15px; 
+ }
+ 
+ .navLink {
+   text-decoration: none;
+      font-weight: bold;
+ }
+ 
+ .navLink:hover {
+   text-decoration: underline;
+ }

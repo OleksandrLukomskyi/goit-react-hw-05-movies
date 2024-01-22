@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.block {
+  display: flex;
+  gap: 10px;
+}
+.backButton {
+  width: 100px;
+  margin-bottom: 10px;
+}
+
+.poster {
+  width: 300px;
+
+  margin-right: 20px;
+}
+
+.genres {
+  margin: 0;
+  padding-right: 5px;
+}
+
+.additionalInfo {
+  margin-top: 20px;
+}

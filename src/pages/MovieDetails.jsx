@@ -7,6 +7,7 @@ import {
   Link,
 } from 'react-router-dom';
 import { getDetailsMovies } from 'services/moviesApi';
+import css from './MovieDetails.module.css';
 
 const DEFAULT_IMG =
   'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
@@ -41,41 +42,49 @@ const MovieDetails = () => {
 
   return (
     moviesDetails && (
-      <div>
-        <button onClick={handelBack}>go back</button>
+      <div className={css.container}>
+        <button onClick={handelBack} className={css.backButton}>
+          go back
+        </button>
+        <div className={css.block}>
+          <div>
+            <img
+              src={
+                moviesDetails.poster_path
+                  ? [basePath + moviesDetails.poster_path]
+                  : DEFAULT_IMG
+              }
+              alt="poster"
+              className={css.poster}
+            />
+          </div>
+          <div className={css.movieDetails}>
+            <h2>
+              {moviesDetails.original_title} (
+              {moviesDetails.release_date.split('-')[0]})
+            </h2>
+            <p>User score:{Math.round(moviesDetails.vote_average * 10)}%</p>
+            <h3>Overview:</h3>
+            <p>{moviesDetails.overview}</p>
+            <h3>Genres</h3>
+            {moviesDetails.genres.map(el => (
+              <p className={css.genres}>{el.name}</p>
+            ))}
+          </div>
+        </div>
 
-        <img
-          src={
-            moviesDetails.poster_path
-              ? [basePath + moviesDetails.poster_path]
-              : DEFAULT_IMG
-          }
-          alt="poster"
-          style={{ width: '20%' }}
-        />
-        <h2>
-          {moviesDetails.original_title} (
-          {moviesDetails.release_date.split('-')[0]})
-        </h2>
-        <p>User score:{Math.round(moviesDetails.vote_average * 10)}%</p>
-        <h3>Overview:</h3>
-        <p>{moviesDetails.overview}</p>
-        <h3>Genres</h3>
-        {moviesDetails.genres.map(el => (
-          <p style={{ margin: ' 0px', paddingRight: '5px' }}>{el.name}</p>
-        ))}
-        <br />
-
-        <p>Additional information:</p>
-        <ul>
-          <li>
-            <Link to={'cast'}>Cast</Link>
-          </li>
-          <li>
-            <Link to={'reviews'}>Reviews</Link>
-          </li>
-        </ul>
-        <Outlet />
+        <div>
+          <p>Additional information:</p>
+          <ul className={css.additionalInfo}>
+            <li>
+              <Link to={'cast'}>Cast</Link>
+            </li>
+            <li>
+              <Link to={'reviews'}>Reviews</Link>
+            </li>
+          </ul>
+          <Outlet />
+        </div>
       </div>
     )
   );
