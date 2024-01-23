@@ -17,9 +17,10 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const [moviesDetails, setMoviesDetails] = useState(null);
 
-  const location = useLocation();
+  const {state} = useLocation();
 
   const navigate = useNavigate();
+  
 
   useEffect(() => {
     const detailsMovie = async () => {
@@ -35,17 +36,18 @@ const MovieDetails = () => {
   }, [movieId]);
 
   const handelBack = () => {
-    navigate(location.state ?? '/movies');
+    navigate(state ?? "/");
   };
 
-  console.log(moviesDetails);
+ 
 
   return (
     moviesDetails && (
       <div className={css.container}>
         <button onClick={handelBack} className={css.backButton}>
-          go back
+         
         </button>
+       
         <div className={css.block}>
           <div>
             <img
@@ -77,10 +79,10 @@ const MovieDetails = () => {
           <p>Additional information:</p>
           <ul className={css.additionalInfo}>
             <li>
-              <Link to={'cast'}>Cast</Link>
+              <Link to={'cast'} state={state}>Cast</Link>
             </li>
             <li>
-              <Link to={'reviews'}>Reviews</Link>
+              <Link to={'reviews'} state={state}>Reviews</Link>
             </li>
           </ul>
           <Outlet />

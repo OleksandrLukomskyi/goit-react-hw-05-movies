@@ -19,7 +19,7 @@ const Cast = () => {
     };
     movieId && castMovie();
   }, [movieId]);
-  console.log(castMovieDetails);
+  
   return (
     <>
       <ul>

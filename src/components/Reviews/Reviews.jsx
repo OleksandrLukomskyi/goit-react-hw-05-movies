@@ -12,7 +12,7 @@ const Reviews = () => {
       try {
         const data = await getReviewsMovies(movieId);
         setReviewsMovieDetails(data);
-        console.log(data);
+        
       } catch (error) {
         console.error(error);
       }
@@ -20,7 +20,7 @@ const Reviews = () => {
     movieId && reviewsMovie();
   }, [movieId]);
 
-  console.log(reviewsMovieDetails);
+ 
 
   return (
     reviewsMovieDetails && (
