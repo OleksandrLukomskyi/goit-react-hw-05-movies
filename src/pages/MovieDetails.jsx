@@ -45,7 +45,7 @@ const MovieDetails = () => {
     moviesDetails && (
       <div className={css.container}>
         <button onClick={handelBack} className={css.backButton}>
-         
+         Go back
         </button>
        
         <div className={css.block}>
